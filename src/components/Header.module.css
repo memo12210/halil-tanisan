@@ -1,0 +1,41 @@
+.header {
+  padding: 42px 0 30px;
+  text-align: center;
+  animation: riseIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.name {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.role {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 46px;
+  margin-top: 28px;
+  font-size: 17px;
+}
+
+.navItem {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.navItem:hover {
+  opacity: 0.5;
+}
