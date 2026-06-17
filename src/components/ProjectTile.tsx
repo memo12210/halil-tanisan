@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Plate from './Plate';
 import { theme } from '../config/theme';
 import type { Project } from './types';
-import styles from './ProjectTile.module.css';
 
 interface ProjectTileProps {
   project: Project;
@@ -14,17 +13,17 @@ export default function ProjectTile({ project }: ProjectTileProps) {
 
   return (
     <div
-      className={styles.tile}
+      className="tile"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className={styles.image}>
+      <div className="tile-image">
         <Plate tone={project.tone} label={project.file} tag={project.tag} />
       </div>
-      <div className={styles.dim} data-active={hover} />
-      <div className={styles.caption} data-active={showCaption}>
-        <span className={styles.title}>{project.title}</span>
-        <span className={styles.meta}>{project.meta}</span>
+      <div className="tile-dim" data-active={hover} />
+      <div className="tile-caption" data-active={showCaption}>
+        <span className="tile-title">{project.title}</span>
+        <span className="tile-meta">{project.meta}</span>
       </div>
     </div>
   );

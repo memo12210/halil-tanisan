@@ -33,3 +33,273 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ---------- Layout (App) ---------- */
+.page {
+  min-height: 100vh;
+  padding: 0 0 90px;
+}
+
+.container {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  padding: 42px 0 30px;
+  text-align: center;
+  animation: riseIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.brand-name {
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.brand-role {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 46px;
+  margin-top: 28px;
+  font-size: 17px;
+}
+
+.nav-item {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.nav-item:hover {
+  opacity: 0.5;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid #e7e4dd;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a857c;
+}
+
+/* ---------- Plate (tone-gradient placeholder) ---------- */
+.plate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.plate-warm {
+  background-image: linear-gradient(135deg, #3a2a1d 0%, #7a4e30 55%, #b9844f 100%);
+}
+
+.plate-cool {
+  background-image: linear-gradient(135deg, #1d2733 0%, #33485c 55%, #6f8ea8 100%);
+}
+
+.plate-dark {
+  background-image: linear-gradient(135deg, #0e0e10 0%, #24232a 60%, #3a3742 100%);
+}
+
+.plate-neutral {
+  background-image: linear-gradient(135deg, #34322c 0%, #6a655b 55%, #a39d90 100%);
+}
+
+.plate-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 235, 0.5);
+}
+
+.plate-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(245, 242, 235, 0.35);
+}
+
+/* ---------- Hero (featured plate) ---------- */
+.hero {
+  animation: riseIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both;
+}
+
+.hero-frame {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hero-image {
+  aspect-ratio: 2.4 / 1;
+  width: 100%;
+  background: #e7e3db;
+}
+
+.hero-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 15, 9, var(--rest-dim));
+  pointer-events: none;
+}
+
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10, 8, 5, 0.5), rgba(8, 6, 4, 0.66));
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.hero-veil[data-active='true'] {
+  opacity: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -46%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #f4f1ea;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+  width: max-content;
+}
+
+.hero-overlay[data-active='true'] {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.hero-featured {
+  padding: 17px 38px;
+  padding-left: calc(38px + 0.46em);
+  border: 1px solid rgba(245, 242, 235, 0.6);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.46em;
+  white-space: nowrap;
+}
+
+.hero-caption {
+  margin-top: 24px;
+}
+
+.hero-title {
+  font-size: 27px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+.hero-credit {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  margin-top: 9px;
+  opacity: 0.85;
+}
+
+/* ---------- Project grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* ---------- Project tile ---------- */
+.tile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tile-image {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #e7e3db;
+}
+
+.tile-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 15, 9, var(--rest-dim));
+  opacity: 1;
+  transition: opacity 0.55s ease;
+  pointer-events: none;
+}
+
+.tile-dim[data-active='true'] {
+  opacity: 0;
+}
+
+.tile-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px;
+  background: linear-gradient(to top, rgba(8, 6, 3, 0.66), rgba(8, 6, 3, 0));
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.tile-caption[data-active='true'] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tile-title {
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.tile-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
