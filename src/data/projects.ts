@@ -16,6 +16,7 @@ export const projects: Project[] = [
     tag: "2.39:1",
     title: "Hermès — Beauté",
     meta: "Dir. Rubberband · Commercial",
+    genre: "Commercials",
   },
   {
     file: "PROJECT.png",
@@ -23,6 +24,7 @@ export const projects: Project[] = [
     tag: "2.00:1",
     title: "Euphoria — S2",
     meta: "HBO / A24 · Narrative",
+    genre: "Narrative",
   },
   {
     file: "PROJECT.png",
@@ -30,6 +32,7 @@ export const projects: Project[] = [
     tag: "2.39:1",
     title: "O'Dessa",
     meta: "Searchlight · Narrative",
+    genre: "Narrative",
   },
   {
     file: "PROJECT.png",
@@ -37,6 +40,7 @@ export const projects: Project[] = [
     tag: "1.85:1",
     title: "Nanny",
     meta: "Amazon Studios · Narrative",
+    genre: "Narrative",
   },
   {
     file: "PROJECT.png",
@@ -44,6 +48,7 @@ export const projects: Project[] = [
     tag: "2.00:1",
     title: "Top Boy III",
     meta: "Netflix · Narrative",
+    genre: "Narrative",
   },
   {
     file: "PROJECT.png",
@@ -51,5 +56,30 @@ export const projects: Project[] = [
     tag: "2.39:1",
     title: "The Fire Inside",
     meta: "MGM Studios · Narrative",
+    genre: "Narrative",
+  },
+  {
+    file: "PROJECT.png",
+    tone: "cool",
+    tag: "1.85:1",
+    title: "The Weeknd — Sacrifice",
+    meta: "Dir. Cliqua · Music Video",
+    genre: "Music Videos",
+  },
+  {
+    file: "PROJECT.png",
+    tone: "dark",
+    tag: "2.39:1",
+    title: "FKA twigs — Eusexua",
+    meta: "Dir. Jordan Hemingway · Music Video",
+    genre: "Music Videos",
+  },
+  {
+    file: "PROJECT.png",
+    tone: "warm",
+    tag: "1.78:1",
+    title: "Rosalía — Saoko",
+    meta: "Dir. Valentín & Marçal · Music Video",
+    genre: "Music Videos",
   },
 ];
