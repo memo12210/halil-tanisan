@@ -54,7 +54,7 @@ body {
 }
 
 .brand {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: baseline;
   gap: 12px;
