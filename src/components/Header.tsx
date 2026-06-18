@@ -15,20 +15,22 @@ export default function Header({ activeGenre = null, onSelectGenre }: HeaderProp
 
   return (
     <header className="site-header">
-      <div className="brand" onClick={() => onSelectGenre?.(null)}>
+      <button type="button" className="brand" onClick={() => onSelectGenre?.(null)}>
         <span className="brand-name">HALİL TANIŞAN</span>
         <span className="brand-role">CINEMATOGRAPHER</span>
-      </div>
+      </button>
       <nav className="nav">
         {GENRES.map((genre) => (
-          <span
+          <button
             key={genre}
+            type="button"
             className="nav-item"
             data-active={activeGenre === genre}
+            aria-pressed={activeGenre === genre}
             onClick={() => handleGenre(genre)}
           >
             {genre}
-          </span>
+          </button>
         ))}
         {STATIC_ITEMS.map((item) => (
           <span key={item} className="nav-item nav-item-static">

@@ -58,6 +58,13 @@ body {
   justify-content: center;
   align-items: baseline;
   gap: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 
 .brand-name {
@@ -81,6 +88,12 @@ body {
 }
 
 .nav-item {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
   transition: opacity 0.3s;
 }
@@ -100,10 +113,6 @@ body {
 
 .nav-item-static:hover {
   opacity: 1;
-}
-
-.brand {
-  cursor: pointer;
 }
 
 /* ---------- Footer ---------- */
@@ -324,7 +333,7 @@ body {
 /* ---------- Grid filter transition ---------- */
 .grid .tile {
   animation: riseIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--i, 0) * 0.05s);
+  animation-delay: min(calc(var(--i, 0) * 0.05s), 0.4s);
 }
 
 @media (prefers-reduced-motion: reduce) {
