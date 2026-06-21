@@ -32,12 +32,16 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 app.post('/api/login', async (req, res) => {
   await new Promise((resolve) => setTimeout(resolve, LOGIN_DELAY_MS));
   const { username, password } = req.body ?? {};
-  const ok = await verifyCredentials(username, password, config);
-  if (!ok) {
-    return res.status(401).json({ error: 'Invalid credentials' });
+  try {
+    const ok = await verifyCredentials(username, password, config);
+    if (!ok) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    setSessionCookie(res, { secure: isProd });
+    return res.status(200).json({ authenticated: true });
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' });
   }
-  setSessionCookie(res, { secure: isProd });
-  return res.status(200).json({ authenticated: true });
 });
 
 app.post('/api/logout', (req, res) => {
