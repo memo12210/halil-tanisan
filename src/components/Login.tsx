@@ -38,7 +38,11 @@ export default function Login() {
         window.location.href = '/';
         return;
       }
-      setError('Invalid credentials');
+      if (res.status === 401) {
+        setError('Invalid credentials');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
     } catch {
       setError('Could not reach the server. Try again.');
     } finally {
