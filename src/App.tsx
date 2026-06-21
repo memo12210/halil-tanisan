@@ -5,6 +5,7 @@ import ProjectGrid from './components/ProjectGrid';
 import Info from './components/Info';
 import ProjectDetail from './components/ProjectDetail';
 import Footer from './components/Footer';
+import Login from './components/Login';
 import type { Genre, Project } from './components/types';
 
 type Route =
@@ -22,6 +23,10 @@ export default function App() {
 
   const headerView = route.name === 'info' ? 'info' : 'work';
   const activeGenre = route.name === 'work' ? route.genre : null;
+
+  if (window.location.pathname === '/login') {
+    return <Login />;
+  }
 
   return (
     <div className="page">
