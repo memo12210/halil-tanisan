@@ -15,8 +15,10 @@ const PORT = process.env.PORT || 3001;
 const isProd = process.env.NODE_ENV === 'production';
 const LOGIN_DELAY_MS = 500; // fixed delay blunts brute-force / timing probing
 
-if (!process.env.SESSION_SECRET) {
-  console.error('Missing SESSION_SECRET. Run `npm run setup-admin` first.');
+const REQUIRED_ENV = ['ADMIN_USER', 'ADMIN_PASSWORD_HASH', 'SESSION_SECRET'];
+const missingEnv = REQUIRED_ENV.filter((key) => !process.env[key]);
+if (missingEnv.length > 0) {
+  console.error(`Missing required env var(s): ${missingEnv.join(', ')}. Run \`npm run setup-admin\` first.`);
   process.exit(1);
 }
 
@@ -68,6 +70,9 @@ if (isProd) {
   }
 }
 
+// TODO(deploy): behind a TLS-terminating proxy (nginx/Cloudflare), the prod
+// `Secure` cookie requires `app.set('trust proxy', 1)` or login will silently
+// fail to persist. Add when STEP 1 is actually deployed.
 app.listen(PORT, () => {
   console.log(`API listening on http://localhost:${PORT}`);
 });
