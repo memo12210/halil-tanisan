@@ -2,17 +2,12 @@ import type { Tone } from './types';
 
 interface PlateProps {
   tone: Tone;
-  /** Filename label shown faintly over the placeholder. */
+  /** Filename of the still this plate stands in for (used as alt text). */
   label: string;
-  /** Optional aspect-ratio tag, e.g. "2.39:1". */
+  /** Optional aspect-ratio tag, e.g. "2.39:1". Unused while plates are clean. */
   tag?: string;
 }
 
-export default function Plate({ tone, label, tag }: PlateProps) {
-  return (
-    <div className={`plate plate-${tone}`}>
-      <span className="plate-label">{label}</span>
-      {tag && <span className="plate-tag">{tag}</span>}
-    </div>
-  );
+export default function Plate({ tone, label }: PlateProps) {
+  return <div className={`plate plate-${tone}`} role="img" aria-label={label} />;
 }

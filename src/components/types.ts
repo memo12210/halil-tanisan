@@ -12,15 +12,8 @@ export interface Project {
   meta: string;
   /** Genre used for nav filtering. */
   genre: Genre;
-}
-
-export interface Featured {
-  file: string;
-  tone: Tone;
-  tag: string;
-  /** Overlay eyebrow label, e.g. "FEATURED". */
-  label: string;
-  title: string;
-  /** Director / studio credit line. */
-  credit: string;
+  /** The single highlighted project for its genre — promoted to that genre's hero. */
+  highlight?: boolean;
+  /** The site-wide most-highlighted project — shown as the Home hero. */
+  featured?: boolean;
 }

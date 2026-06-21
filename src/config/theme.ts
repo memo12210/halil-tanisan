@@ -9,7 +9,7 @@ export interface Theme {
 }
 
 export const theme: Theme = {
-  restDim: 0.5,
-  accent: '#b54a36',
+  restDim: 0,
+  accent: '#111111',
   captions: true,
 };

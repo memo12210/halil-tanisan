@@ -1,21 +1,29 @@
 import type { Genre } from './types';
 
 const GENRES: Genre[] = ['Narrative', 'Music Videos', 'Commercials'];
-const STATIC_ITEMS = ['Info', 'Stills'];
 
 interface HeaderProps {
-  activeGenre?: Genre | null;
-  onSelectGenre?: (genre: Genre | null) => void;
+  view: 'work' | 'info';
+  activeGenre: Genre | null;
+  onSelectGenre: (genre: Genre | null) => void;
+  onSelectInfo: () => void;
 }
 
-export default function Header({ activeGenre = null, onSelectGenre }: HeaderProps) {
+export default function Header({
+  view,
+  activeGenre,
+  onSelectGenre,
+  onSelectInfo,
+}: HeaderProps) {
+  const genreActive = (genre: Genre) => view === 'work' && activeGenre === genre;
+
   const handleGenre = (genre: Genre) => {
-    onSelectGenre?.(activeGenre === genre ? null : genre);
+    onSelectGenre(genreActive(genre) ? null : genre);
   };
 
   return (
     <header className="site-header">
-      <button type="button" className="brand" onClick={() => onSelectGenre?.(null)}>
+      <button type="button" className="brand" onClick={() => onSelectGenre(null)}>
         <span className="brand-name">HALİL TANIŞAN</span>
         <span className="brand-role">CINEMATOGRAPHER</span>
       </button>
@@ -25,18 +33,23 @@ export default function Header({ activeGenre = null, onSelectGenre }: HeaderProp
             key={genre}
             type="button"
             className="nav-item"
-            data-active={activeGenre === genre}
-            aria-pressed={activeGenre === genre}
+            data-active={genreActive(genre)}
+            aria-pressed={genreActive(genre)}
             onClick={() => handleGenre(genre)}
           >
             {genre}
           </button>
         ))}
-        {STATIC_ITEMS.map((item) => (
-          <span key={item} className="nav-item nav-item-static">
-            {item}
-          </span>
-        ))}
+        <button
+          type="button"
+          className="nav-item"
+          data-active={view === 'info'}
+          aria-pressed={view === 'info'}
+          onClick={onSelectInfo}
+        >
+          Info
+        </button>
+        <span className="nav-item nav-item-static">Stills</span>
       </nav>
     </header>
   );
