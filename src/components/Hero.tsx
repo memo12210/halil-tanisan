@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Plate from './Plate';
+import type { CSSProperties } from 'react';
 import { heroFor } from '../data/projects';
 import type { Genre, Project } from './types';
 
 interface HeroProps {
-  activeGenre: Genre | null;
+  activeGenre: Genre;
   onOpen: (project: Project) => void;
 }
 
@@ -17,6 +17,7 @@ export default function Hero({ activeGenre, onOpen }: HeroProps) {
       <button
         type="button"
         className="hero-frame"
+        style={{ '--frame-ratio': project.frameRatio } as CSSProperties}
         aria-label={`${project.title} — ${project.meta}`}
         onClick={() => onOpen(project)}
         onMouseEnter={() => setHover(true)}
@@ -25,7 +26,7 @@ export default function Hero({ activeGenre, onOpen }: HeroProps) {
         onBlur={() => setHover(false)}
       >
         <div className="hero-image">
-          <Plate tone={project.tone} label={project.file} tag={project.tag} />
+          <img className="media-img" src={project.thumbnail} alt="" />
         </div>
         <div className="hero-caption" data-active={hover}>
           <span className="hero-title">{project.title}</span>

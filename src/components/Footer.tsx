@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="site-footer">
       <span>© {new Date().getFullYear()}</span>
       <span></span>
-      <span>Bodrum / Istanbul</span>
+      <span>Istanbul / Warsaw</span>
     </footer>
   );
 }

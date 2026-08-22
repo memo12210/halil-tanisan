@@ -113,14 +113,6 @@ body {
   text-decoration-thickness: 1px;
 }
 
-.nav-item-static {
-  cursor: default;
-}
-
-.nav-item-static:hover {
-  opacity: 1;
-}
-
 /* ---------- Footer ---------- */
 .site-footer {
   display: flex;
@@ -162,7 +154,16 @@ body {
   background-image: linear-gradient(135deg, #34322c 0%, #6a655b 55%, #a39d90 100%);
 }
 
-/* ---------- Hero (featured plate) ---------- */
+/* ---------- Media (real thumbnails / video) ---------- */
+.media-img,
+.media-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Hero (genre-highlight plate) ---------- */
 .hero {
   animation: riseIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.06s both;
 }
@@ -182,7 +183,9 @@ body {
 }
 
 .hero-image {
-  aspect-ratio: 1.85 / 1;
+  /* --frame-ratio (set per-project on .hero-frame) overrides this when the source media
+     pillarboxes its real content, so object-fit: cover crops the bars away. */
+  aspect-ratio: var(--frame-ratio, 1.85 / 1);
   width: 100%;
   background: #e7e3db;
 }
@@ -222,16 +225,18 @@ body {
   color: rgba(255, 255, 255, 0.82);
 }
 
-/* ---------- Project grid ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* ---------- Project rows ---------- */
+/* Each non-highlighted project gets one full-width row of its own. The gap matches the
+   original grid's 14px throughout — what marks a row as one project is that it's a single
+   button, and hovering dims/captions all three images together as one unit. */
+.rows {
+  display: flex;
+  flex-direction: column;
   gap: 14px;
   margin-top: 14px;
 }
 
-/* ---------- Project tile ---------- */
-.tile {
+.row {
   display: block;
   width: 100%;
   position: relative;
@@ -245,13 +250,22 @@ body {
   text-align: inherit;
 }
 
-.tile-image {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  background: #e7e3db;
+.row-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
-.tile-dim {
+.row-image {
+  /* --frame-ratio (set per-project on .row) overrides this when the source media
+     pillarboxes its real content, so object-fit: cover crops the bars away. */
+  aspect-ratio: var(--frame-ratio, 16 / 9);
+  width: 100%;
+  background: #e7e3db;
+  overflow: hidden;
+}
+
+.row-dim {
   position: absolute;
   inset: 0;
   background: rgba(18, 15, 9, var(--rest-dim));
@@ -260,11 +274,11 @@ body {
   pointer-events: none;
 }
 
-.tile-dim[data-active='true'] {
+.row-dim[data-active='true'] {
   opacity: 0;
 }
 
-.tile-caption {
+.row-caption {
   position: absolute;
   left: 0;
   right: 0;
@@ -272,28 +286,28 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 18px;
-  background: linear-gradient(to top, rgba(8, 6, 3, 0.66), rgba(8, 6, 3, 0));
+  padding: 18px 24px;
+  background: linear-gradient(to top, rgba(8, 6, 3, 0.62), rgba(8, 6, 3, 0));
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
 }
 
-.tile-caption[data-active='true'] {
+.row-caption[data-active='true'] {
   opacity: 1;
   transform: translateY(0);
 }
 
-.tile-title {
-  font-size: 15px;
+.row-title {
+  font-size: 16px;
   font-weight: 500;
   color: #fff;
   letter-spacing: 0.02em;
 }
 
-.tile-meta {
-  font-size: 10px;
+.row-meta {
+  font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.82);
@@ -397,29 +411,6 @@ body {
   overflow: hidden;
 }
 
-.detail-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 64px;
-  height: 64px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: rgba(12, 10, 8, 0.42);
-  pointer-events: none;
-}
-
-.detail-play::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 54%;
-  transform: translate(-50%, -50%);
-  border-style: solid;
-  border-width: 9px 0 9px 15px;
-  border-color: transparent transparent transparent rgba(255, 255, 255, 0.92);
-}
-
 .detail-meta {
   margin-top: 18px;
 }
@@ -439,80 +430,46 @@ body {
   color: var(--muted);
 }
 
+/* ---------- Stills ---------- */
+/* Plain photos, no titles/captions — just the highlighted still large up top and the
+   rest in a simple grid below (no per-project grouping like the rows above, since each
+   still stands on its own). */
+.stills {
+  animation: riseIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The source stills are 1920x1080 canvases pillarboxing a 4:3 photo (black bars down each
+   side). Framing at the photo's own 4:3 ratio and relying on .media-img's object-fit: cover
+   crops those bars away instead of showing them letterboxed. */
+.stills-hero {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: #e7e3db;
+  overflow: hidden;
+}
+
+.stills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.stills-tile {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: #e7e3db;
+  overflow: hidden;
+}
+
 /* ---------- Grid filter transition ---------- */
-.grid .tile {
+.rows .row {
   animation: riseIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   animation-delay: min(calc(var(--i, 0) * 0.05s), 0.4s);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grid .tile {
+  .rows .row {
     animation: none;
   }
-}
-
-/* ---------- Login ---------- */
-.login {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 22rem;
-  gap: 0.5rem;
-}
-
-.login-title {
-  font-weight: 600;
-  font-size: 1.25rem;
-  text-align: center;
-  margin: 0 0 1rem;
-}
-
-.login-label {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 0.5rem;
-}
-
-.login-input {
-  font: inherit;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid var(--rest-dim, #ccc);
-  border-radius: 4px;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.login-input:focus {
-  outline: 2px solid var(--text);
-  outline-offset: 1px;
-}
-
-.login-error {
-  color: #b00020;
-  font-size: 0.85rem;
-  margin: 0.5rem 0 0;
-}
-
-.login-submit {
-  margin-top: 1.25rem;
-  font: inherit;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid var(--text);
-  border-radius: 4px;
-  background: var(--text);
-  color: var(--bg);
-  cursor: pointer;
-}
-
-.login-submit:disabled {
-  opacity: 0.6;
-  cursor: default;
 }

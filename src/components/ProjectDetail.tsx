@@ -1,4 +1,3 @@
-import Plate from './Plate';
 import type { Project } from './types';
 
 interface ProjectDetailProps {
@@ -9,8 +8,14 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <article className="detail">
       <div className="detail-player">
-        <Plate tone={project.tone} label={`${project.title} — film`} />
-        <span className="detail-play" aria-hidden="true" />
+        <video
+          className="media-video"
+          src={project.video}
+          poster={project.thumbnail}
+          controls
+          playsInline
+          preload="metadata"
+        />
       </div>
 
       <div className="detail-meta">

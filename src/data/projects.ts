@@ -1,204 +1,139 @@
 import type { Genre, Project } from "../components/types";
 
-export const projects: Project[] = [
+/** Placeholder media used until real stills/films are wired in, per project. */
+const PLACEHOLDER_THUMBNAIL = "/placeholder_image.png";
+const PLACEHOLDER_VIDEO = "/placeholder_video.mp4";
+
+/** A project entry before placeholder media is filled in. */
+type ProjectSeed = Omit<Project, "thumbnail" | "video" | "images"> &
+  Partial<Pick<Project, "thumbnail" | "video" | "images">>;
+
+const seeds: ProjectSeed[] = [
   // ---------- Narrative ----------
   {
-    file: "PROJECT.png",
+    file: "01.webp",
     tone: "dark",
     tag: "2.00:1",
-    title: "Euphoria — S2",
-    meta: "HBO / A24 · Narrative",
+    title: "Ferret",
+    meta: "Lodz Film School · Experimental",
     genre: "Narrative",
     highlight: true,
-    featured: true,
+    thumbnail: "/projects/ferret/01.webp",
+    // The hero above already shows 01 — the row uses the next three so nothing repeats.
+    images: [
+      "/projects/ferret/02.webp",
+      "/projects/ferret/03.webp",
+      "/projects/ferret/04.webp",
+    ],
   },
   {
-    file: "PROJECT.png",
+    file: "01.webp",
     tone: "warm",
     tag: "2.39:1",
-    title: "O'Dessa",
-    meta: "Searchlight · Narrative",
+    title: "Hotel",
+    meta: "Lodz Film School · Fantastic",
     genre: "Narrative",
+    thumbnail: "/projects/hotel/01.webp",
+    images: [
+      "/projects/hotel/01.webp",
+      "/projects/hotel/02.webp",
+      "/projects/hotel/03.webp",
+    ],
   },
   {
     file: "PROJECT.png",
     tone: "neutral",
     tag: "1.85:1",
-    title: "Nanny",
-    meta: "Amazon Studios · Narrative",
+    title: "Kepler-452",
+    meta: "Lodz Film School · Drama",
     genre: "Narrative",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "dark",
-    tag: "2.00:1",
-    title: "Top Boy III",
-    meta: "Netflix · Narrative",
-    genre: "Narrative",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "warm",
-    tag: "2.39:1",
-    title: "The Fire Inside",
-    meta: "MGM Studios · Narrative",
-    genre: "Narrative",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "cool",
-    tag: "1.85:1",
-    title: "The Quiet Coast",
-    meta: "Untitled Feature · Narrative",
-    genre: "Narrative",
+    thumbnail: "/projects/kepler/01.webp",
+    images: [
+      "/projects/kepler/01.webp",
+      "/projects/kepler/02.webp",
+      "/projects/kepler/03.webp",
+    ],
   },
   {
     file: "PROJECT.png",
     tone: "neutral",
-    tag: "2.39:1",
-    title: "Aftersun II",
-    meta: "Short Film · Narrative",
+    tag: "1.85:1",
+    title: "Ballet",
+    meta: "Lodz Film School · Experimental",
     genre: "Narrative",
-  },
-
-  // ---------- Music Videos ----------
-  {
-    file: "PROJECT.png",
-    tone: "cool",
-    tag: "1.85:1",
-    title: "The Weeknd — Sacrifice",
-    meta: "Dir. Cliqua · Music Video",
-    genre: "Music Videos",
-    highlight: true,
-  },
-  {
-    file: "PROJECT.png",
-    tone: "dark",
-    tag: "2.39:1",
-    title: "FKA twigs — Eusexua",
-    meta: "Dir. Jordan Hemingway · Music Video",
-    genre: "Music Videos",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "warm",
-    tag: "1.78:1",
-    title: "Rosalía — Saoko",
-    meta: "Dir. Valentín & Marçal · Music Video",
-    genre: "Music Videos",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "cool",
-    tag: "2.00:1",
-    title: "Dua Lipa — Mirage",
-    meta: "Dir. Tanu Muino · Music Video",
-    genre: "Music Videos",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "warm",
-    tag: "2.39:1",
-    title: "Burna Boy — Solis",
-    meta: "Dir. Meji Alabi · Music Video",
-    genre: "Music Videos",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "dark",
-    tag: "1.85:1",
-    title: "ROSÉ — Glasshouse",
-    meta: "Dir. Dave Meyers · Music Video",
-    genre: "Music Videos",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "neutral",
-    tag: "1.78:1",
-    title: "Tyla — Tide",
-    meta: "Dir. Child · Music Video",
-    genre: "Music Videos",
+    thumbnail: "/projects/ballet/01.webp",
+    images: [
+      "/projects/ballet/01.webp",
+      "/projects/ballet/02.webp",
+      "/projects/ballet/03.webp",
+    ],
   },
 
   // ---------- Commercials ----------
   {
-    file: "PROJECT.png",
-    tone: "cool",
-    tag: "2.39:1",
-    title: "Hermès — Beauté",
-    meta: "Dir. Rubberband · Commercial",
+    file: "01.webp",
+    tone: "neutral",
+    tag: "2.00:1",
+    title: "Cinili",
+    meta: "Turkish Bath House · Commercial",
     genre: "Commercials",
     highlight: true,
+    thumbnail: "/projects/cinili/01.webp",
+    images: [
+      "/projects/cinili/02.webp",
+      "/projects/cinili/03.webp",
+      "/projects/cinili/04.webp",
+    ],
+    // Source files pillarbox a 4:3 photo inside a 1920x1080 canvas.
+    frameRatio: "4 / 3",
   },
   {
-    file: "PROJECT.png",
-    tone: "dark",
-    tag: "2.00:1",
-    title: "Nike — Run the Night",
-    meta: "Dir. Megaforce · Commercial",
-    genre: "Commercials",
-  },
-  {
-    file: "PROJECT.png",
+    file: "01.webp",
     tone: "neutral",
-    tag: "1.85:1",
-    title: "Apple — Close Up",
-    meta: "Dir. Park Pictures · Commercial",
-    genre: "Commercials",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "warm",
-    tag: "2.39:1",
-    title: "Chanel — N°5 Nocturne",
-    meta: "Dir. Iconoclast · Commercial",
-    genre: "Commercials",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "dark",
     tag: "2.00:1",
-    title: "Mercedes — Vantablack",
-    meta: "Dir. Smuggler · Commercial",
+    title: "Bomonti",
+    meta: "Brewery · Commercial",
     genre: "Commercials",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "neutral",
-    tag: "1.78:1",
-    title: "Aesop — Hands",
-    meta: "Dir. Academy · Commercial",
-    genre: "Commercials",
-  },
-  {
-    file: "PROJECT.png",
-    tone: "cool",
-    tag: "1.85:1",
-    title: "Bottega — Green Room",
-    meta: "Dir. Pulse Films · Commercial",
-    genre: "Commercials",
+    thumbnail: "/projects/bomonti/01.webp",
+    images: [
+      "/projects/bomonti/01.webp",
+      "/projects/bomonti/02.webp",
+      "/projects/bomonti/03.webp",
+    ],
+    // Source files pillarbox a 4:3 photo inside a 1920x1080 canvas.
+    frameRatio: "4 / 3",
   },
 ];
 
-/** The site-wide most-highlighted project — the Home page hero. */
-export const featured: Project =
-  projects.find((project) => project.featured) ?? projects[0];
+/** Every project, with placeholder media filled in where a project omits its own. */
+export const projects: Project[] = seeds.map((seed) => {
+  const thumbnail = seed.thumbnail ?? PLACEHOLDER_THUMBNAIL;
+  return {
+    ...seed,
+    thumbnail,
+    video: seed.video ?? PLACEHOLDER_VIDEO,
+    // Projects without a dedicated triad repeat their single thumbnail across the row.
+    images: seed.images ?? [thumbnail, thumbnail, thumbnail],
+  };
+});
 
-/** The hero for a given view: a genre's highlight, or the global featured on Home. */
-export function heroFor(genre: Genre | null): Project {
-  if (!genre) return featured;
+/** The hero for a genre page: its highlighted project. */
+export function heroFor(genre: Genre): Project {
   return (
     projects.find((project) => project.genre === genre && project.highlight) ??
     projects.find((project) => project.genre === genre) ??
-    featured
+    projects[0]
   );
 }
 
-/** Grid projects for a view, with the promoted hero removed to avoid duplication. */
-export function gridFor(genre: Genre | null): Project[] {
+/**
+ * Grid projects for a genre page. The genre's highlighted project stays in the grid too —
+ * repeated as the first row, right below the hero it's already shown large as up top.
+ */
+export function gridFor(genre: Genre): Project[] {
   const hero = heroFor(genre);
-  const list = genre
-    ? projects.filter((project) => project.genre === genre)
-    : projects;
-  return list.filter((project) => project !== hero);
+  const rest = projects.filter(
+    (project) => project.genre === genre && project !== hero,
+  );
+  return [hero, ...rest];
 }

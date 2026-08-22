@@ -3,30 +3,30 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import ProjectGrid from './components/ProjectGrid';
 import Info from './components/Info';
+import Stills from './components/Stills';
 import ProjectDetail from './components/ProjectDetail';
 import Footer from './components/Footer';
-import Login from './components/Login';
 import type { Genre, Project } from './components/types';
 
 type Route =
-  | { name: 'work'; genre: Genre | null }
+  | { name: 'work'; genre: Genre }
   | { name: 'info' }
+  | { name: 'stills' }
   | { name: 'project'; project: Project };
 
 export default function App() {
-  const [route, setRoute] = useState<Route>({ name: 'work', genre: null });
+  const [route, setRoute] = useState<Route>({ name: 'work', genre: 'Narrative' });
 
   const go = (next: Route) => {
     setRoute(next);
     window.scrollTo(0, 0);
   };
 
-  const headerView = route.name === 'info' ? 'info' : 'work';
-  const activeGenre = route.name === 'work' ? route.genre : null;
-
-  if (window.location.pathname === '/login') {
-    return <Login />;
-  }
+  const headerView =
+    route.name === 'info' || route.name === 'stills' ? route.name : 'work';
+  // Falls back to 'Narrative' when not on a work route; Header only shows a genre as
+  // active while headerView === 'work', so the exact value doesn't matter otherwise.
+  const activeGenre = route.name === 'work' ? route.genre : 'Narrative';
 
   return (
     <div className="page">
@@ -36,13 +36,15 @@ export default function App() {
           activeGenre={activeGenre}
           onSelectGenre={(genre) => go({ name: 'work', genre })}
           onSelectInfo={() => go({ name: 'info' })}
+          onSelectStills={() => go({ name: 'stills' })}
         />
         {route.name === 'info' && <Info />}
+        {route.name === 'stills' && <Stills />}
         {route.name === 'project' && <ProjectDetail project={route.project} />}
         {route.name === 'work' && (
           <>
             <Hero
-              key={route.genre ?? 'home'}
+              key={route.genre}
               activeGenre={route.genre}
               onOpen={(project) => go({ name: 'project', project })}
             />
