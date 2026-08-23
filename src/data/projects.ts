@@ -53,7 +53,7 @@ const seeds: ProjectSeed[] = [
   {
     file: "PROJECT.png",
     tone: "neutral",
-    title: "Ballet",
+    title: "Mihaliki Bird",
     meta: "Lodz Film School · Experimental",
     genre: "Narrative",
     thumbnail: "/projects/ballet/01.webp",
