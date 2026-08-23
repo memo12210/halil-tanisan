@@ -17,17 +17,17 @@ export default function Info() {
           of the human face.
         </p>
 
-        <p className="info-eyebrow">Latest Credits / Awards</p>
+        <p className="info-eyebrow">Selected Festivals / Awards</p>
         <p>
-          Ferret — CAMERIMAGE, Film and Art School Student Etudes Panorama
-          Selection, 2023
+          Ferret — EnergaCAMERIMAGE, Film and Art Schools Panorama, 2023
         </p>
         <p>
-          The Hotel — CAMERIMAGE, Film and Art School Etudes Competition, 2025
+          The Hotel — EnergaCAMERIMAGE, Film and Art School Etudes
+          Competition, 2025
         </p>
         <p>
-          The Hotel — Maneki Brothers Cinematography Festival, Student
-          Competition Program, 2026
+          The Hotel — Manaki Brothers International Cinematographers’ Film
+          Festival, Student Competition, 2026
         </p>
         <p>The Hotel — Istanbul Film Festival, Short Film Competition, 2026</p>
       </div>
