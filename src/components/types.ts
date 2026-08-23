@@ -6,19 +6,15 @@ export interface Project {
   /** Source filename, shown as the plate label. */
   file: string;
   tone: Tone;
-  /** Aspect-ratio tag, e.g. "2.39:1". */
-  tag: string;
   title: string;
   meta: string;
   /** Genre used for nav filtering. */
   genre: Genre;
-  /** Thumbnail image shown on the genre hero and as the project-detail poster. */
+  /** Thumbnail image shown on the genre hero. */
   thumbnail: string;
   /** The three images shown together in this project's grid row (falls back to
    *  `thumbnail` repeated three times when a project has no dedicated triad). */
   images: [string, string, string];
-  /** Video shown in the project-detail player. */
-  video: string;
   /** The single highlighted project for its genre — promoted to that genre's hero. */
   highlight?: boolean;
   /**

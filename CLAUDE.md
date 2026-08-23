@@ -31,10 +31,11 @@ no server-side runtime required.
 
 ### Routing is state, not URLs
 [src/App.tsx](src/App.tsx) holds the public-site navigation model in a single `useState` over
-a `Route` union: `{ name: 'work'; genre: Genre }`, `{ name: 'info' }`, `{ name: 'stills' }`, or
-`{ name: 'project'; project }`. `go(next)` swaps the route and scrolls to top. There are no
-URLs/hash/Back for the portfolio — navigation happens only through `Header` and by clicking
-the hero/rows.
+a `Route` union: `{ name: 'work'; genre: Genre }`, `{ name: 'info' }`, or `{ name: 'stills' }`.
+`go(next)` swaps the route and scrolls to top. There are no URLs/hash/Back for the portfolio —
+navigation happens only through `Header`. The site is a pure showcase gallery: there is no
+per-project detail page and the hero/rows are not clickable, just hover-captioned imagery
+(a project-detail route/page was prototyped and then removed — don't resurrect it).
 
 There is no "show everything" / all-genres state — `genre` on the `work` route is always a
 concrete `Genre`, never `null`. The site boots straight into `{ name: 'work', genre:
@@ -65,10 +66,11 @@ still there). Adding/renaming a genre means editing the type, the `GENRES` array
 ### Non-highlighted projects render as rows of three, not a tile grid
 [src/components/ProjectRow.tsx](src/components/ProjectRow.tsx) renders each non-hero project
 from `gridFor(genre)` as one full-width row containing all three of that project's `images` —
-a single `<button>` wraps all three `<img>`s, so hover/focus dims and captions them together
-as one unit (this is what signals "these three belong to one project," not a gap difference —
-the row-to-row gap intentionally matches the within-row gap, 14px, same as the original tile
+a single `<div>` wraps all three `<img>`s, so hovering dims and captions them together as one
+unit (this is what signals "these three belong to one project," not a gap difference — the
+row-to-row gap intentionally matches the within-row gap, 14px, same as the original tile
 grid). `ProjectGrid.tsx` just maps `gridFor(genre)` over `ProjectRow`s inside a `.rows` column.
+Neither the hero nor the rows are clickable — there's nothing to navigate to.
 
 ### Stills is a separate, title-less collection — not a `Genre`
 [src/data/stills.ts](src/data/stills.ts) is its own flat `stills: Still[]` array — deliberately
@@ -79,16 +81,16 @@ is **not** repeated in the grid below). [src/components/Stills.tsx](src/componen
 renders plain `<img>`s with no `<button>`, no hover state, and no caption at all — don't add
 title/description text here even though the pattern elsewhere (`Hero`, `ProjectRow`) has one.
 
-### Media: mostly real `<img>`/`<video>` now, still placeholder content for most projects
-`Hero`, `ProjectRow`, and `ProjectDetail` render real `<img className="media-img">` /
-`<video className="media-video">` tags bound to each project's `thumbnail` / `images` / `video`
-fields (`src/data/projects.ts` fills these in from the shared `public/placeholder_image.png` /
-`public/placeholder_video.mp4` when a seed doesn't specify its own). Only
+### Media: mostly real `<img>` now, still placeholder content for most projects
+`Hero` and `ProjectRow` render real `<img className="media-img">` tags bound to each project's
+`thumbnail` / `images` fields (`src/data/projects.ts` fills these in from the shared
+`public/placeholder_image.png` when a seed doesn't specify its own). Only
 [src/components/Plate.tsx](src/components/Plate.tsx) — a tone-gradient `<div role="img">` —
 remains, used just for the Info-page portrait. `Tone = 'warm' | 'cool' | 'dark' | 'neutral'`
-still maps to `.plate-*` gradients in CSS for that one spot. Replacing the placeholder
-image/video files with real stills/footage is the deliberate not-yet-done step for most
-projects; the wiring for per-project media already exists.
+still maps to `.plate-*` gradients in CSS for that one spot. Replacing the placeholder image
+files with real stills is the deliberate not-yet-done step for most projects; the wiring for
+per-project media already exists. There is no video/detail-player anywhere in the site — the
+`Project` type has no `video`/`tag` fields.
 
 Projects with real per-project media live under `public/projects/<slug>/` (currently ferret,
 hotel, kepler, ballet, cinili, bomonti — plus a shared `public/projects/stills/` for the
@@ -114,7 +116,7 @@ property set inline on `.hero-frame`/`.row` and consumed by `.hero-image`/`.row-
 All CSS lives in [src/styles/global.css](src/styles/global.css) (plain CSS, no modules/Tailwind).
 Design tokens are CSS custom properties in `:root` (`--bg`, `--text`, `--muted`, `--accent`,
 `--rest-dim`, `--font-sans`). Class names are BE-ish and component-scoped by convention
-(`.hero-*`, `.row-*`, `.detail-*`, `.info-*`, `.stills-*`). When adding a component, add its
+(`.hero-*`, `.row-*`, `.info-*`, `.stills-*`). When adding a component, add its
 styles here under a matching `/* ---------- Name ---------- */` section.
 
 [src/config/theme.ts](src/config/theme.ts) is a small JS-side config (`restDim`, `accent`,
@@ -122,9 +124,10 @@ styles here under a matching `/* ---------- Name ---------- */` section.
 mirror CSS vars and are largely inert.
 
 ### Accessibility conventions (match these)
-Clickable images are real `<button>` elements with button-reset CSS and `aria-label`s, not
-divs (`.hero-frame`, `.row`). Hover captions also trigger on focus/blur for keyboard users.
-Grid entrance stagger uses `--i` per row and is disabled under `prefers-reduced-motion`.
+`.hero-frame` and `.row` are plain non-interactive `<div>`s (no `<button>`, no click handler,
+no `aria-label`) — hover captions are a mouse-only decorative affordance, not a focusable
+control, since there's nothing to navigate to. Grid entrance stagger uses `--i` per row and is
+disabled under `prefers-reduced-motion`.
 
 ## Conventions
 

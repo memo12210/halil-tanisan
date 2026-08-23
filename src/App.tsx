@@ -4,15 +4,13 @@ import Hero from './components/Hero';
 import ProjectGrid from './components/ProjectGrid';
 import Info from './components/Info';
 import Stills from './components/Stills';
-import ProjectDetail from './components/ProjectDetail';
 import Footer from './components/Footer';
-import type { Genre, Project } from './components/types';
+import type { Genre } from './components/types';
 
 type Route =
   | { name: 'work'; genre: Genre }
   | { name: 'info' }
-  | { name: 'stills' }
-  | { name: 'project'; project: Project };
+  | { name: 'stills' };
 
 export default function App() {
   const [route, setRoute] = useState<Route>({ name: 'work', genre: 'Narrative' });
@@ -40,18 +38,10 @@ export default function App() {
         />
         {route.name === 'info' && <Info />}
         {route.name === 'stills' && <Stills />}
-        {route.name === 'project' && <ProjectDetail project={route.project} />}
         {route.name === 'work' && (
           <>
-            <Hero
-              key={route.genre}
-              activeGenre={route.genre}
-              onOpen={(project) => go({ name: 'project', project })}
-            />
-            <ProjectGrid
-              activeGenre={route.genre}
-              onOpen={(project) => go({ name: 'project', project })}
-            />
+            <Hero key={route.genre} activeGenre={route.genre} />
+            <ProjectGrid activeGenre={route.genre} />
           </>
         )}
         <Footer />

@@ -7,24 +7,18 @@ interface ProjectRowProps {
   project: Project;
   /** Position among the visible rows; drives the staggered entrance animation. */
   index?: number;
-  onOpen: (project: Project) => void;
 }
 
-export default function ProjectRow({ project, index = 0, onOpen }: ProjectRowProps) {
+export default function ProjectRow({ project, index = 0 }: ProjectRowProps) {
   const [hover, setHover] = useState(false);
   const showCaption = hover && theme.captions;
 
   return (
-    <button
-      type="button"
+    <div
       className="row"
       style={{ '--i': index, '--frame-ratio': project.frameRatio } as CSSProperties}
-      aria-label={`${project.title} — ${project.meta}`}
-      onClick={() => onOpen(project)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onFocus={() => setHover(true)}
-      onBlur={() => setHover(false)}
     >
       <div className="row-images">
         {project.images.map((src, i) => (
@@ -38,6 +32,6 @@ export default function ProjectRow({ project, index = 0, onOpen }: ProjectRowPro
         <span className="row-title">{project.title}</span>
         <span className="row-meta">{project.meta}</span>
       </div>
-    </button>
+    </div>
   );
 }

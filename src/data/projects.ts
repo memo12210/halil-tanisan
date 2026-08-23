@@ -2,18 +2,16 @@ import type { Genre, Project } from "../components/types";
 
 /** Placeholder media used until real stills/films are wired in, per project. */
 const PLACEHOLDER_THUMBNAIL = "/placeholder_image.png";
-const PLACEHOLDER_VIDEO = "/placeholder_video.mp4";
 
 /** A project entry before placeholder media is filled in. */
-type ProjectSeed = Omit<Project, "thumbnail" | "video" | "images"> &
-  Partial<Pick<Project, "thumbnail" | "video" | "images">>;
+type ProjectSeed = Omit<Project, "thumbnail" | "images"> &
+  Partial<Pick<Project, "thumbnail" | "images">>;
 
 const seeds: ProjectSeed[] = [
   // ---------- Narrative ----------
   {
     file: "01.webp",
     tone: "dark",
-    tag: "2.00:1",
     title: "Ferret",
     meta: "Lodz Film School · Experimental",
     genre: "Narrative",
@@ -29,7 +27,6 @@ const seeds: ProjectSeed[] = [
   {
     file: "01.webp",
     tone: "warm",
-    tag: "2.39:1",
     title: "Hotel",
     meta: "Lodz Film School · Fantastic",
     genre: "Narrative",
@@ -43,7 +40,6 @@ const seeds: ProjectSeed[] = [
   {
     file: "PROJECT.png",
     tone: "neutral",
-    tag: "1.85:1",
     title: "Kepler-452",
     meta: "Lodz Film School · Drama",
     genre: "Narrative",
@@ -57,7 +53,6 @@ const seeds: ProjectSeed[] = [
   {
     file: "PROJECT.png",
     tone: "neutral",
-    tag: "1.85:1",
     title: "Ballet",
     meta: "Lodz Film School · Experimental",
     genre: "Narrative",
@@ -73,7 +68,6 @@ const seeds: ProjectSeed[] = [
   {
     file: "01.webp",
     tone: "neutral",
-    tag: "2.00:1",
     title: "Cinili",
     meta: "Turkish Bath House · Commercial",
     genre: "Commercials",
@@ -90,7 +84,6 @@ const seeds: ProjectSeed[] = [
   {
     file: "01.webp",
     tone: "neutral",
-    tag: "2.00:1",
     title: "Bomonti",
     meta: "Brewery · Commercial",
     genre: "Commercials",
@@ -111,7 +104,6 @@ export const projects: Project[] = seeds.map((seed) => {
   return {
     ...seed,
     thumbnail,
-    video: seed.video ?? PLACEHOLDER_VIDEO,
     // Projects without a dedicated triad repeat their single thumbnail across the row.
     images: seed.images ?? [thumbnail, thumbnail, thumbnail],
   };

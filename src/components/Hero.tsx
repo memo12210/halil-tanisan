@@ -1,29 +1,23 @@
 import { useState } from 'react';
 import type { CSSProperties } from 'react';
 import { heroFor } from '../data/projects';
-import type { Genre, Project } from './types';
+import type { Genre } from './types';
 
 interface HeroProps {
   activeGenre: Genre;
-  onOpen: (project: Project) => void;
 }
 
-export default function Hero({ activeGenre, onOpen }: HeroProps) {
+export default function Hero({ activeGenre }: HeroProps) {
   const [hover, setHover] = useState(false);
   const project = heroFor(activeGenre);
 
   return (
     <section className="hero">
-      <button
-        type="button"
+      <div
         className="hero-frame"
         style={{ '--frame-ratio': project.frameRatio } as CSSProperties}
-        aria-label={`${project.title} — ${project.meta}`}
-        onClick={() => onOpen(project)}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        onFocus={() => setHover(true)}
-        onBlur={() => setHover(false)}
       >
         <div className="hero-image">
           <img className="media-img" src={project.thumbnail} alt="" />
@@ -32,7 +26,7 @@ export default function Hero({ activeGenre, onOpen }: HeroProps) {
           <span className="hero-title">{project.title}</span>
           <span className="hero-credit">{project.meta}</span>
         </div>
-      </button>
+      </div>
     </section>
   );
 }

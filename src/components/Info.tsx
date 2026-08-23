@@ -9,43 +9,35 @@ export default function Info() {
 
       <div className="info-bio">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua, based in
-          ut enim ad minim veniam.
+          Halil Tanisan is a Turkish cinematographer and filmmaker based between
+          Poland and Turkey. He holds both a bachelor’s and a master’s degree in
+          Cinematography from the Łódź Film School.
         </p>
         <p>
-          Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur, excepteur sint
-          occaecat cupidatat non proident.
+          Working across both analog and digital formats, his practice is shaped
+          by a strong interest in time, space, movement, and the expressive
+          possibilities of the human face. He approaches cinematography not
+          simply as image making, but as a way of revealing something less
+          tangible beneath the visible.
         </p>
 
         <p className="info-eyebrow">Latest Credits / Awards</p>
         <p>
-          Recent projects: ‘Lorem’ for Studio A, ‘Ipsum’ for Pictures Co.,
-          ‘Dolor Sit’ for Network B, ‘Amet’ (Festival Grand Prize) for Studios
-          C, and ‘Consectetur’ for Channel D.
+          His work has been presented at major international festivals including
+          EnergaCAMERIMAGE and the Manaki Brothers International
+          Cinematographers’ Film Festival. Ferret was part of the official
+          selection at EnergaCAMERIMAGE, while The Hotel, which he directed and
+          photographed, was selected for the festival’s Student Etudes
+          Competition. His work has also been featured in the official selection
+          at Manaki Brothers.
         </p>
-
-        <h3 className="info-subhead">Word Is Cheap</h3>
-        <blockquote className="info-quote">
-          “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.”
-        </blockquote>
       </div>
 
       <aside className="info-contacts">
         <h3 className="info-subhead">Contact</h3>
         <div className="info-contact">
-          <a className="info-link" href="mailto:hello@example.com">
-            hello@example.com
-          </a>
-          <a className="info-link" href="tel:+10000000000">
-            +1 (000) 000&#8209;0000
+          <a className="info-link" href="mailto:haliltanisan@gmail.com">
+            haliltanisan@gmail.com
           </a>
         </div>
       </aside>
