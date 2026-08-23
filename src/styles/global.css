@@ -301,14 +301,14 @@ body {
 /* ---------- Info ---------- */
 .info {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 220px;
+  grid-template-columns: 225px minmax(0, 1fr) 220px;
   gap: 44px;
   padding-top: 30px;
   animation: riseIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .info-photo {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 4;
   width: 100%;
   background: #e7e3db;
   overflow: hidden;
@@ -379,7 +379,7 @@ body {
   }
 
   .info-photo {
-    max-width: 360px;
+    max-width: 270px;
   }
 }
 

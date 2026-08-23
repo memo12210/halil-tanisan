@@ -50,7 +50,7 @@ export default function Header({
           aria-pressed={view === "stills"}
           onClick={onSelectStills}
         >
-          Stills
+          Photography
         </button>
         <button
           type="button"
